@@ -10,15 +10,20 @@ Presets
 > _- can switch detected edition by adding EditionID to script name_  
 > _- can troubleshoot upgrade failing by adding `no_update` to script name_  
 > _- auto defaults to 11, so pass version as well for 10: `auto 21H2 MediaCreationTool.bat`_  
+
 2 ***Auto ISO*** with detected media in current folder directly _(or C:\ESD if run from zip)_  
 > _- can override detected media by adding edition name / language / arch to script name_  
 > _- example: `21H1 Education en-US x86 iso MediaCreationTool.bat`_  
+
 3 ***Auto USB*** with detected media in specified usb target  
 > _- for data safety, this is not fully automated - must select the usb drive manually in GUI_  
+
 4 ***Select*** with user picked Edition, Language, Arch (x86,x64,both) - on specified target  
 > _- implicit choice, includes setup override files (disable by adding `def` to script name)_  
+
 5 ***MCT Defaults*** runs unassisted, creating media without script modification  
 > _- no added files, script passes `products.xml` to MCT and quits without touching media_  
+
 1-4 presets will modify created media in the following ways:  
 > _- write `auto.cmd` to run on demand for auto upgrade with edition switch and skip tpm_  
 > _- write `$ISO$` folder content (if it exists) at the root of the media_  
@@ -28,6 +33,7 @@ Presets
 > _- write `AutoUnattend.xml` in boot.wim to enable local account on Windows 11 Home (11 only)_  
 > _- patch `winsetup.dll` in boot.wim to remove windows 11 setup checks when booting from media (11 only)_  
 > _- can disable by adding `def` to script name for a default, untouched MCT media_  
+
 Simple deployment  
 -----------------   
 **auto.cmd** is behind ***Auto Upgrade*** preset via GUI  
@@ -57,6 +63,7 @@ Finally, it sets recommended setup options with least amount of issues on upgrad
 >
 > Can even add a VL / MAK / retail product key in the same way to take care of licensing differences.  
 > The script also picks up any `$ISO$` folder in the current location - for $OEM$ branding, configuration, tweaks etc.  
+
 Changelog  
 ---------  
 _No need to right-click Run as Admin, script will ask itself. Directly saving the Raw files no longer breaks line endings_  
